@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yunshan.mapper.ShopcarMapper">
+<!--  展示商品详情  -->
+<select id="getAllShopCarByUserId" resultMap="getMap">
+	  select * from ec_shopcar where user_id = #{userId}
+</select>
+
+	<!-- 直接引用其他空间的查询 -->
+	<resultMap type="com.yunshan.pojo.Shopcar" id="getMap">
+		<association property="article" column="article_id" 
+				select="com.yunshan.mapper.ArticleMapper.getArticleById">
+		</association>
+	</resultMap>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:contenxt="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+   
+    
+    <!--扫描controller所在的包-->
+    <context:component-scan base-package="com.yunshan.controller"/>
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 跳转登录页面 -->
+    <mvc:view-controller path="/login"/>
+    <mvc:view-controller path="/register"/>
+    <!-- 拦截未登录用户 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+
+            <mvc:mapping path="/*.action"/>
+
+            <mvc:mapping path="/*/*.action"/>
+
+            <!-- 声明拦截器的信息 -->
+            <bean class="com.yunshan.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- 两个标准配置 -->
+    <!--注解驱动 能支持springmvc更高级的一些功能，JSR303校验，快捷的ajax,映射动态请求-->
+    <mvc:annotation-driven/>
+    <!-- 将springmvc不能处理的请求交给tomcat -->
+    <!--放行静态资源  -->
+    <mvc:default-servlet-handler/>
+
+
+</beans>
