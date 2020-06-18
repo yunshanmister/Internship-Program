@@ -11,7 +11,7 @@
     <servlet-api.version>2.5</servlet-api.version>
     <jsp-api.version>2.0</jsp-api.version>
     <pagehelper.version>5.0.0</pagehelper.version>
-    <jackson.version>2.9.8</jackson.version>
+    <jackson.version>2.10.0.pr1</jackson.version>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <spring.version>5.0.4.RELEASE</spring.version>
